@@ -43,6 +43,36 @@ const calculateExercises = (hours: number[], target: number): Result => {
   };
 };
 
-console.log(
-  calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2)
-);
+interface ExerciseArguments {
+  hours: number[];
+  target: number;
+}
+
+const parseExercisesArguments = (args: string[]): ExerciseArguments => {
+  if (args.length < 4) {
+    throw new Error("Not enough arguments");
+  }
+
+  const target = Number(args[2]);
+  const hours = args.slice(3).map(Number);
+
+  if (isNaN(target) || hours.some(isNaN)) {
+    throw new Error("Provided values were not numbers!");
+  }
+
+  return {
+    hours,
+    target
+  };
+};
+
+try {
+  const { hours, target } = parseExercisesArguments(process.argv);
+  console.log(calculateExercises(hours, target));
+} catch (error: unknown) {
+  let errorMessage = 'Something bad happened.'
+  if (error instanceof Error) {
+    errorMessage += ' Error: ' + error.message;
+  }
+  console.log(errorMessage);
+}
