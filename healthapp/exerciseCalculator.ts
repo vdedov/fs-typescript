@@ -70,7 +70,7 @@ try {
   const { hours, target } = parseExercisesArguments(process.argv);
   console.log(calculateExercises(hours, target));
 } catch (error: unknown) {
-  let errorMessage = 'Something bad happened.'
+  let errorMessage = 'Something bad happened.';
   if (error instanceof Error) {
     errorMessage += ' Error: ' + error.message;
   }

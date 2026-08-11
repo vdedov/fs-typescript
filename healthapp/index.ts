@@ -1,6 +1,6 @@
 import express from 'express';
 const app = express();
-import { calculateBmi } from './bmiCalculator.ts'
+import { calculateBmi } from './bmiCalculator.ts';
 
 app.get('/hello', (_req, res) => {
   res.send('Hello Full Stack!');
